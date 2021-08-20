@@ -1,6 +1,6 @@
 {
   "name": "expenditure-notebook",
-  "homepage": "https://travistang.github.io/expenditure_notebook",
+  "homepage": "https://travistang.github.io/expenditure-notebook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

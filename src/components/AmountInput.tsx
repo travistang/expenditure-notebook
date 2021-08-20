@@ -1,21 +1,24 @@
 import React, { KeyboardEventHandler } from "react";
 
-export default function AmountInput() {
-  const [value, setValue] = React.useState(0);
+type Props = {
+  value: number;
+  onChange: (value: number) => void;
+};
+export default function AmountInput({ value, onChange }: Props) {
   const inputRef = React.useRef(null);
 
-  const valueString = (value / 100).toFixed(2);
+  const valueString = `${(value / 100).toFixed(2)}€`;
 
   const screenWidth = window.screen.width;
   const onInput: KeyboardEventHandler = (e) => {
     const key = e.key;
     const keyAsDigit = parseInt(key);
     if (!Number.isNaN(keyAsDigit)) {
-      setValue(value * 10 + keyAsDigit);
+      onChange(value * 10 + keyAsDigit);
     }
 
     if (key === "Backspace") {
-      setValue(Math.floor(value / 10));
+      onChange(Math.floor(value / 10));
     }
   };
   return (

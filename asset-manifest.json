@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/expenditure_notebook/static/css/main.b39d476a.chunk.css",
+    "main.js": "/expenditure_notebook/static/js/main.dbf34ed0.chunk.js",
+    "main.js.map": "/expenditure_notebook/static/js/main.dbf34ed0.chunk.js.map",
+    "runtime-main.js": "/expenditure_notebook/static/js/runtime-main.603d4663.js",
+    "runtime-main.js.map": "/expenditure_notebook/static/js/runtime-main.603d4663.js.map",
+    "static/js/2.b3852e88.chunk.js": "/expenditure_notebook/static/js/2.b3852e88.chunk.js",
+    "static/js/2.b3852e88.chunk.js.map": "/expenditure_notebook/static/js/2.b3852e88.chunk.js.map",
+    "static/js/3.845db8af.chunk.js": "/expenditure_notebook/static/js/3.845db8af.chunk.js",
+    "static/js/3.845db8af.chunk.js.map": "/expenditure_notebook/static/js/3.845db8af.chunk.js.map",
+    "index.html": "/expenditure_notebook/index.html",
+    "static/css/main.b39d476a.chunk.css.map": "/expenditure_notebook/static/css/main.b39d476a.chunk.css.map",
+    "static/js/2.b3852e88.chunk.js.LICENSE.txt": "/expenditure_notebook/static/js/2.b3852e88.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.603d4663.js",
+    "static/js/2.b3852e88.chunk.js",
+    "static/css/main.b39d476a.chunk.css",
+    "static/js/main.dbf34ed0.chunk.js"
+  ]
+}

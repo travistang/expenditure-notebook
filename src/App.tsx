@@ -51,11 +51,11 @@ function App() {
   };
 
   return (
-    <div className="absolute vertical inset-0 flex p-4 bg-primary-500">
+    <div className="absolute vertical inset-0 flex p-4 bg-primary-500 overflow-hidden">
       <Toaster />
       <Header currentPage={page} goPage={setPage} />
       {page === PageList.HOME_PAGE && (
-        <>
+        <div className="flex-1 vertical overflow-hidden">
           <AmountInput
             value={formValue.amount}
             onChange={(newValue) =>
@@ -79,7 +79,7 @@ function App() {
           />
           <div className="flex-1" />
           <SubmitButton onSubmit={saveForm} />
-        </>
+        </div>
       )}
       {page === PageList.RECORD_LIST_PAGE && <RecordListPage />}
     </div>

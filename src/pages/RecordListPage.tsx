@@ -6,9 +6,9 @@ export default function RecordListPage() {
   const { store } = React.useContext(LocalStorageContext);
 
   return (
-    <div className="vertical">
+    <div className="vertical flex-1 overflow-y-scroll">
       {store?.expenditures?.map((record) => (
-        <div className="items-center grid grid-cols-12 h-16 border-t border-b border-primary-200">
+        <div className="flex-shrink-0 items-center grid grid-cols-12 h-16 border-t border-b border-primary-200">
           <span className="col-span-3">
             {format(new Date(record.date), "yyyy-MM-dd HH:mm")}
           </span>

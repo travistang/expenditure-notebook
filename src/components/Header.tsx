@@ -15,7 +15,7 @@ export default function Header({ currentPage, goPage }: Props) {
   const goingPageIcon = goingPage === PageList.HOME_PAGE ? faHome : faList;
   const go = () => goPage(goingPage);
   return (
-    <header className="h-16 center relative">
+    <header className="h-16 flex-0 center relative">
       <span className="uppercase text-lg">Expenditure logbook</span>
       <div className="absolute right-0 top-0 h-full horizontal-center gap-4 text-xl">
         <FontAwesomeIcon

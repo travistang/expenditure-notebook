@@ -30,8 +30,10 @@ export default function UploadModal({ opened, onClose }: Props) {
         const responseJson = await response.json();
         toast.success("Code detected");
         onClose();
-      } catch {
-        toast.error("Invalid QR code");
+      } catch (e) {
+        console.log(e);
+        // toast.error("Invalid QR code");
+        toast.error(e.message);
       }
     }
   };
@@ -39,7 +41,7 @@ export default function UploadModal({ opened, onClose }: Props) {
     <Modal title="Upload record" opened={opened} onClose={onClose}>
       <span className="text-sm font-bold text-color-300 leading-4">
         Upload expenditure records on this device to server by sending its QR
-        code. {window.location.hostname}
+        code.
       </span>
       <QrReader
         className="mt-4 rounded-lg w-full overflow-hidden"

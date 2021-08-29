@@ -1,9 +1,11 @@
 import classnames from "classnames";
 
-type Props = {
+export type ModalControlProps = {
   opened: boolean;
-  title: string;
   onClose: () => void;
+};
+type Props = ModalControlProps & {
+  title: string;
   className?: string;
   children: React.ReactNode;
 };
@@ -18,15 +20,18 @@ export default function Modal({
     return null;
   }
   return (
-    <div className="fixed z-10 inset-0 vertical filter blur-md bg-color-700 bg-opacity-30">
-      <div onClick={onClose} className="flex-1" />
+    <div
+      className="fixed z-10 inset-0 p-4 center bg-color-700 bg-opacity-60"
+      onClick={onClose}
+    >
       <div
+        onClick={(e) => e.stopPropagation()}
         className={classnames(
-          "rounded-t-lg bg-color-100 vertical overflow-y-scroll",
-          className || "h-1/3 p-2"
+          "rounded-lg w-full bg-primary-300 text-color-100 vertical overflow-y-scroll",
+          className || "h-2/3 p-2"
         )}
       >
-        <span className="uppercase font-bold text-md text-primary-500">
+        <span className="uppercase font-bold text-md text-color-100 mb-2">
           {title}
         </span>
         {children}

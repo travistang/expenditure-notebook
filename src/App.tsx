@@ -12,6 +12,7 @@ import LocalStorageContextProvider, {
 import { PageList } from "./pageList";
 import toast, { Toaster } from "react-hot-toast";
 import RecordListPage from "./pages/RecordListPage";
+import UploadModal from "./components/UploadModal";
 
 type Form = {
   amount: number;
@@ -28,6 +29,7 @@ function App() {
   const [page, setPage] = React.useState<PageList>(PageList.HOME_PAGE);
   const { addExpenditure, store } = React.useContext(LocalStorageContext);
   const [formValue, setFormValue] = React.useState<Form>(defaultFormValue);
+  const [uploadFormModalOpened, setUploadFormOpened] = React.useState(false);
 
   const labelsAddedInStore = store.expenditures.reduce<string[]>(
     (labels, expenditure) =>
@@ -53,6 +55,10 @@ function App() {
   return (
     <div className="absolute vertical inset-0 flex p-4 bg-primary-500 overflow-hidden">
       <Toaster />
+      <UploadModal
+        opened={uploadFormModalOpened}
+        onClose={() => setUploadFormOpened(false)}
+      />
       <Header currentPage={page} goPage={setPage} />
       {page === PageList.HOME_PAGE && (
         <div className="flex-1 vertical overflow-hidden">
@@ -78,7 +84,10 @@ function App() {
             selectableOptions={labelsAddedInStore}
           />
           <div className="flex-1" />
-          <SubmitButton onSubmit={saveForm} />
+          <SubmitButton
+            onOpenUploadModal={() => setUploadFormOpened(true)}
+            onSubmit={saveForm}
+          />
         </div>
       )}
       {page === PageList.RECORD_LIST_PAGE && <RecordListPage />}

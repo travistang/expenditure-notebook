@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/expenditure-notebook/static/css/main.24472f78.chunk.css",
-    "main.js": "/expenditure-notebook/static/js/main.f9e9937e.chunk.js",
-    "main.js.map": "/expenditure-notebook/static/js/main.f9e9937e.chunk.js.map",
+    "main.js": "/expenditure-notebook/static/js/main.54a6546d.chunk.js",
+    "main.js.map": "/expenditure-notebook/static/js/main.54a6546d.chunk.js.map",
     "runtime-main.js": "/expenditure-notebook/static/js/runtime-main.8252d966.js",
     "runtime-main.js.map": "/expenditure-notebook/static/js/runtime-main.8252d966.js.map",
     "static/js/2.e8f965a6.chunk.js": "/expenditure-notebook/static/js/2.e8f965a6.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.8252d966.js",
     "static/js/2.e8f965a6.chunk.js",
     "static/css/main.24472f78.chunk.css",
-    "static/js/main.f9e9937e.chunk.js"
+    "static/js/main.54a6546d.chunk.js"
   ]
 }

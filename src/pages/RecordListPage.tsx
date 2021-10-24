@@ -35,7 +35,7 @@ export default function RecordListPage() {
           )}
         >
           {expenditureDifferences <= 0 ? "-" : "+"}
-          {expenditureDifferences.toFixed(2)}€
+          {Math.abs(expenditureDifferences).toFixed(2)}€
         </div>
       </div>
       {expenditureList?.map((record) => (

@@ -65,19 +65,21 @@ export default function MultipleSelect({
   return (
     <div className="vertical gap-1">
       <label htmlFor={name}>{label}</label>
-      <div
-        className={classnames(
-          "relative rounded-lg bg-primary-200 p-4 horizontal",
-          "gap-2"
-        )}
-      >
-        {values.map((value) => (
+      <div className="flex items-center gap-2 overflow-x-auto max-w-md">
+        {values.reverse().map((value) => (
           <SelectedOptionChip
             text={value}
             key={value}
             onDelete={onRemove(value)}
           />
         ))}
+      </div>
+      <div
+        className={classnames(
+          "relative rounded-lg bg-primary-200 p-4 horizontal overflow-x-auto",
+          "gap-2"
+        )}
+      >
         <input
           onKeyDown={onKeyDown}
           className="bg-primary-200 w-full outline-none text-2xl"

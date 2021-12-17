@@ -27,7 +27,7 @@ export default function Input({
       >
         {children}
         <input
-          className="h-4 bg-primary-500 text-primary-100 w-full outline-none text-xl"
+          className="bg-primary-500 text-primary-100 w-full outline-none text-xl"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />

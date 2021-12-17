@@ -84,18 +84,13 @@ export default function MultipleSelect({
       >
         <input
           onKeyDown={onKeyDown}
-          className="bg-primary-500 w-full outline-none text-xl h-4"
+          className="bg-primary-500 w-full outline-none text-xl"
           value={editingValue}
           onChange={(e) => setEditingValue(e.target.value)}
         />
       </div>
       {displayingSelectableOptions?.length > 0 && (
-        <div
-          style={{
-            top: inputRef?.current?.getBoundingClientRect()?.bottom,
-          }}
-          className="absolute min-h-20 bg-primary-500 rounded-lg left-0 right-0  z-20 max-h-32 mt-2 overflow-y-auto"
-        >
+        <div className="absolute min-h-20 bg-primary-500 rounded-lg left-0 right-0 bottom-0 z-20 max-h-32 mt-2 overflow-y-auto">
           {displayingSelectableOptions.map((opt) => (
             <div
               key={opt}

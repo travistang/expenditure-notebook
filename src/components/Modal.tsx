@@ -27,7 +27,7 @@ export default function Modal({
       <div
         onClick={(e) => e.stopPropagation()}
         className={classnames(
-          "rounded-lg w-full bg-primary-300 text-color-100 vertical overflow-y-scroll",
+          "rounded-lg w-full bg-primary-600 text-color-100 vertical overflow-y-auto",
           className || "h-2/3 p-2"
         )}
       >

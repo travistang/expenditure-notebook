@@ -53,7 +53,7 @@ function App() {
   };
 
   return (
-    <div className="absolute vertical inset-0 flex p-4 bg-primary-500 overflow-hidden">
+    <div className="absolute vertical inset-0 flex p-4 bg-primary-700 overflow-hidden">
       <Toaster />
       <UploadModal
         opened={uploadFormModalOpened}

@@ -25,7 +25,7 @@ export default function AmountInput({ value, onChange }: Props) {
     <input
       ref={inputRef}
       style={{ fontSize: (1.5 * screenWidth) / valueString.length }}
-      className="digit center text-color-100 bg-primary-500 text-center"
+      className="digit center text-color-100 bg-primary-700 text-center"
       value={valueString}
       type="tel"
       onKeyDown={onInput}

@@ -21,13 +21,13 @@ export default function Input({
       <label htmlFor={name}>{label}</label>
       <div
         className={classnames(
-          "rounded-lg bg-primary-200 p-4 horizontal",
+          "rounded-lg bg-primary-500 p-4 horizontal",
           className
         )}
       >
         {children}
         <input
-          className="bg-primary-200 w-full outline-none text-2xl"
+          className="bg-primary-500 text-primary-100 w-full outline-none text-2xl"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />

@@ -24,7 +24,7 @@ export default function ClipboardModal({ opened, onClose }: Props) {
     >
       <textarea
         id="store-text"
-        className="shadow-inner rounded-lg bg-primary-500 code digit flex-1 resize-none"
+        className="shadow-inner rounded-lg bg-primary-700 code digit flex-1 resize-none"
         value={JSON.stringify(store)}
         contentEditable={false}
       />

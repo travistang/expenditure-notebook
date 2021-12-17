@@ -21,7 +21,7 @@ export default function RecordListPage() {
   const expenditureDifferences = expenditureOfTheMonth - expenditureOfLastMonth;
   return (
     <div className="vertical flex-1 overflow-y-scroll">
-      <div className="sticky top-0 h-16 flex-shrink-0 bg-primary-500 flex items-center justify-between">
+      <div className="sticky top-0 h-16 flex-shrink-0 bg-primary-700 flex items-center justify-between">
         <div className="text-sm uppercase vertical text-green-500 font-bold">
           <span>Current month</span>
           <b className="text-3xl text-green-400">

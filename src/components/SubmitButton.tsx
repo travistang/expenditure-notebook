@@ -18,9 +18,9 @@ export default function SubmitButton({ onOpenUploadModal, onSubmit }: Props) {
       <div className="absolute right-0 top-0 h-full horizontal-center gap-2">
         <button
           onClick={onOpenUploadModal}
-          className="text-3xl md:text-7xl rounded-full center h-12 w-12 bg-color-50 text-primary-500"
+          className="text-3xl md:text-7xl rounded-full center h-12 w-12 bg-color-50 text-primary-700"
         >
-          <FontAwesomeIcon icon={faQrcode} className="text-primary-500" />
+          <FontAwesomeIcon icon={faQrcode} className="text-primary-700" />
         </button>
       </div>
     </div>

@@ -16,6 +16,7 @@ export default function MultipleSelect({
   onChange,
   selectableOptions = [],
 }: Props) {
+  const inputRef = React.useRef<HTMLDivElement>(null);
   const [editingValue, setEditingValue] = React.useState("");
 
   const onAddOption = (selectedOption?: string) => {
@@ -63,10 +64,10 @@ export default function MultipleSelect({
           .sort()
           .slice(0, 5);
   return (
-    <div className="vertical gap-1">
+    <div className="vertical gap-1 overflow-y-visible">
       <label htmlFor={name}>{label}</label>
       <div className="flex items-center gap-2 overflow-x-auto max-w-md">
-        {values.reverse().map((value) => (
+        {values.map((value) => (
           <SelectedOptionChip
             text={value}
             key={value}
@@ -75,31 +76,37 @@ export default function MultipleSelect({
         ))}
       </div>
       <div
+        ref={inputRef}
         className={classnames(
-          "relative rounded-lg bg-primary-200 p-4 horizontal overflow-x-auto",
+          "relative inline-block rounded-lg bg-primary-500 p-4 horizontal overflow-x-auto overflow-y-hidden",
           "gap-2"
         )}
       >
         <input
           onKeyDown={onKeyDown}
-          className="bg-primary-200 w-full outline-none text-2xl"
+          className="bg-primary-500 w-full outline-none text-2xl"
           value={editingValue}
           onChange={(e) => setEditingValue(e.target.value)}
         />
-        {displayingSelectableOptions && (
-          <div className="absolute min-h-20 bg-primary-200 rounded-lg left-0 right-0 top-full mt-2 overflow-y-scroll">
-            {displayingSelectableOptions.map((opt) => (
-              <div
-                key={opt}
-                onClick={() => onAddOption(opt)}
-                className="cursor-pointer px-2 h-12 whitespace-nowrap overflow-ellipsis horizontal-center hover:bg-primary-700"
-              >
-                {opt}
-              </div>
-            ))}
-          </div>
-        )}
       </div>
+      {displayingSelectableOptions?.length > 0 && (
+        <div
+          style={{
+            top: inputRef?.current?.getBoundingClientRect()?.bottom,
+          }}
+          className="absolute min-h-20 bg-primary-500 rounded-lg left-0 right-0  z-20 max-h-32 mt-2 overflow-y-auto"
+        >
+          {displayingSelectableOptions.map((opt) => (
+            <div
+              key={opt}
+              onClick={() => onAddOption(opt)}
+              className="cursor-pointer px-2 h-12 whitespace-nowrap overflow-ellipsis horizontal-center hover:bg-primary-700"
+            >
+              {opt}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

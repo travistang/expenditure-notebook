@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/expenditure-notebook/static/css/main.5f7b2f24.chunk.css",
-    "main.js": "/expenditure-notebook/static/js/main.680d98a2.chunk.js",
-    "main.js.map": "/expenditure-notebook/static/js/main.680d98a2.chunk.js.map",
+    "main.css": "/expenditure-notebook/static/css/main.b2575e9b.chunk.css",
+    "main.js": "/expenditure-notebook/static/js/main.eda15d76.chunk.js",
+    "main.js.map": "/expenditure-notebook/static/js/main.eda15d76.chunk.js.map",
     "runtime-main.js": "/expenditure-notebook/static/js/runtime-main.e9778c40.js",
     "runtime-main.js.map": "/expenditure-notebook/static/js/runtime-main.e9778c40.js.map",
     "static/js/2.edcb7b14.chunk.js": "/expenditure-notebook/static/js/2.edcb7b14.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.36bc2131.chunk.js": "/expenditure-notebook/static/js/3.36bc2131.chunk.js",
     "static/js/3.36bc2131.chunk.js.map": "/expenditure-notebook/static/js/3.36bc2131.chunk.js.map",
     "index.html": "/expenditure-notebook/index.html",
-    "static/css/main.5f7b2f24.chunk.css.map": "/expenditure-notebook/static/css/main.5f7b2f24.chunk.css.map",
+    "static/css/main.b2575e9b.chunk.css.map": "/expenditure-notebook/static/css/main.b2575e9b.chunk.css.map",
     "static/js/2.edcb7b14.chunk.js.LICENSE.txt": "/expenditure-notebook/static/js/2.edcb7b14.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e9778c40.js",
     "static/js/2.edcb7b14.chunk.js",
-    "static/css/main.5f7b2f24.chunk.css",
-    "static/js/main.680d98a2.chunk.js"
+    "static/css/main.b2575e9b.chunk.css",
+    "static/js/main.eda15d76.chunk.js"
   ]
 }

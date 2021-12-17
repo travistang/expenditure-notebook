@@ -84,7 +84,7 @@ export default function MultipleSelect({
       >
         <input
           onKeyDown={onKeyDown}
-          className="bg-primary-500 w-full outline-none text-2xl"
+          className="bg-primary-500 w-full outline-none text-xl h-4"
           value={editingValue}
           onChange={(e) => setEditingValue(e.target.value)}
         />

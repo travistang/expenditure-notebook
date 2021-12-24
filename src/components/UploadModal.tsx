@@ -31,9 +31,7 @@ export default function UploadModal({ opened, onClose }: Props) {
         toast.success("Code detected");
         onClose();
       } catch (e) {
-        console.log(e);
-        // toast.error("Invalid QR code");
-        toast.error(e.message);
+        toast.error(`Error scanning QR Code: ${(e as Error).message}`);
       }
     }
   };

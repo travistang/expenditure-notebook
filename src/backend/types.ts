@@ -1,9 +1,19 @@
+export enum Currency {
+  EUR = "EUR",
+  USD = "USD",
+  PLN = "PLN",
+  HKD = "HKD",
+}
+
+export type CurrencyConfigType = { currency: Currency; exchangeRate: number };
+
 export type Expenditure = {
   description: string;
   date: Date;
   amount: number;
   labels: string[];
   id: string;
+  currencyConfig?: CurrencyConfigType;
 };
 
 export type DB = {

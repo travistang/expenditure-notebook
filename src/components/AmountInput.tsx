@@ -1,13 +1,18 @@
+import getSymbolFromCurrency from "currency-symbol-map";
 import React, { KeyboardEventHandler } from "react";
+import { Currency } from "../backend/types";
 
 type Props = {
   value: number;
+  currency: Currency;
   onChange: (value: number) => void;
 };
-export default function AmountInput({ value, onChange }: Props) {
+export default function AmountInput({ value, currency, onChange }: Props) {
   const inputRef = React.useRef(null);
 
-  const valueString = `${(value / 100).toFixed(2)}€`;
+  const valueString = `${(value / 100).toFixed(2)}${getSymbolFromCurrency(
+    currency
+  )}`;
 
   const screenWidth = window.screen.width;
   const onInput: KeyboardEventHandler = (e) => {

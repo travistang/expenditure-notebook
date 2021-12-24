@@ -13,17 +13,24 @@ import { PageList } from "./pageList";
 import toast, { Toaster } from "react-hot-toast";
 import RecordListPage from "./pages/RecordListPage";
 import UploadModal from "./components/UploadModal";
+import CurrencyConfigEntry from "./components/CurrencyConfig/CurrencyConfigEntry";
+import { Currency, CurrencyConfigType } from "./backend/types";
 
 type Form = {
   amount: number;
   description: string;
   labels: string[];
+  currencyConfig: CurrencyConfigType;
 };
 
 const defaultFormValue: Form = {
   amount: 0,
   description: "",
   labels: [],
+  currencyConfig: {
+    currency: Currency.EUR,
+    exchangeRate: 1,
+  },
 };
 function App() {
   const [page, setPage] = React.useState<PageList>(PageList.HOME_PAGE);
@@ -42,9 +49,18 @@ function App() {
       toast.error("missing description or amount is invalid.");
       return;
     }
+    if ([0, 1].includes(formValue.currencyConfig.exchangeRate)) {
+      toast.error("Exchange rate cannot be 0 or 1");
+      return;
+    }
+
+    const finalAmountInEuro =
+      formValue.currencyConfig.currency === Currency.EUR
+        ? formValue.amount
+        : formValue.amount / formValue.currencyConfig.exchangeRate;
     addExpenditure({
       ...formValue,
-      amount: formValue.amount / 100,
+      amount: finalAmountInEuro / 100,
       date: new Date(),
       id: `${new Date().getTime()}-${Math.random().toString().split(".")[1]}`,
     });
@@ -63,9 +79,17 @@ function App() {
       {page === PageList.HOME_PAGE && (
         <div className="flex-1 vertical overflow-hidden">
           <AmountInput
+            currency={formValue.currencyConfig.currency}
             value={formValue.amount}
             onChange={(newValue) =>
               setFormValue({ ...formValue, amount: newValue })
+            }
+          />
+          <CurrencyConfigEntry
+            amount={formValue.amount}
+            currencyConfig={formValue.currencyConfig}
+            onChangeCurrency={(newConfig) =>
+              setFormValue({ ...formValue, currencyConfig: newConfig })
             }
           />
           <Input

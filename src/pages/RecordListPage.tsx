@@ -2,6 +2,7 @@ import React from "react";
 import { format, isSameMonth, subMonths } from "date-fns";
 import { LocalStorageContext } from "../contexts/LocalStorageContext";
 import classNames from "classnames";
+import getSymbolFromCurrency from "currency-symbol-map";
 
 export default function RecordListPage() {
   const { store } = React.useContext(LocalStorageContext);
@@ -46,9 +47,18 @@ export default function RecordListPage() {
           <span className="col-span-6 whitespace-nowrap overflow-hidden overflow-ellipsis">
             {record.description}
           </span>
-          <span className="col-span-3 whitespace-nowrap overflow-hidden overflow-ellipsis">
-            {record.amount}€
-          </span>
+          <div className="flex flex-col justify-center col-span-3 whitespace-nowrap overflow-hidden overflow-ellipsis">
+            {record.amount.toFixed(2)}€
+            {record.currencyConfig && (
+              <span className="text-opacity-60 text-xs font-bold">
+                (
+                {(record.amount * record.currencyConfig.exchangeRate).toFixed(
+                  2
+                )}{" "}
+                {getSymbolFromCurrency(record.currencyConfig.currency)})
+              </span>
+            )}
+          </div>
         </div>
       ))}
     </div>

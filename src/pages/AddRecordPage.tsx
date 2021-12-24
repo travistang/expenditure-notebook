@@ -1,5 +1,4 @@
 import React from "react";
-import toast from "react-hot-toast";
 import { Currency, Form } from "../backend/types";
 import AmountInput from "../components/AmountInput";
 import CurrencyConfigEntry from "../components/CurrencyConfig/CurrencyConfigEntry";

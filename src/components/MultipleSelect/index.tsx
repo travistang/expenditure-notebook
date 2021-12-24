@@ -16,7 +16,6 @@ export default function MultipleSelect({
   onChange,
   selectableOptions = [],
 }: Props) {
-  const inputRef = React.useRef<HTMLDivElement>(null);
   const [editingValue, setEditingValue] = React.useState("");
 
   const onAddOption = (selectedOption?: string) => {
@@ -76,7 +75,6 @@ export default function MultipleSelect({
         ))}
       </div>
       <div
-        ref={inputRef}
         className={classnames(
           "relative inline-block rounded-lg bg-primary-500 p-4 horizontal overflow-x-auto overflow-y-hidden",
           "gap-2"

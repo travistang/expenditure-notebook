@@ -29,7 +29,9 @@ export default function AmountInput({ value, currency, onChange }: Props) {
   return (
     <input
       ref={inputRef}
-      style={{ fontSize: (1.5 * screenWidth) / valueString.length }}
+      style={{
+        fontSize: Math.min((1.5 * screenWidth) / valueString.length, 128),
+      }}
       className="digit center text-color-100 bg-primary-700 text-center"
       value={valueString}
       type="tel"

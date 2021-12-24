@@ -46,14 +46,14 @@ export default function SubmitButton({
     <div className="h-1/6 md:h-1/3 center w-full relative">
       <button
         onClick={saveForm}
-        className="h-20 w-20 md:h-96 md:w-96 rounded-full bg-secondary-500 text-xl md:text-7xl"
+        className="h-20 w-20 md:h-96 md:w-96 lg:h-48 lg:w-48 rounded-full bg-secondary-500 text-xl md:text-7xl"
       >
         <FontAwesomeIcon icon={faPen} />
       </button>
       <div className="absolute right-0 top-0 h-full horizontal-center gap-2">
         <button
           onClick={onOpenUploadModal}
-          className="text-3xl md:text-7xl rounded-full center h-12 w-12 bg-color-50 text-primary-700"
+          className="text-3xl md:text-7xl rounded-full center h-12 w-12 lg:h-24 lg:w-24 bg-color-50 text-primary-700"
         >
           <FontAwesomeIcon icon={faQrcode} className="text-primary-700" />
         </button>

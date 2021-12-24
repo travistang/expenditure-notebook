@@ -1,119 +1,24 @@
 import React from "react";
-import AmountInput from "./components/AmountInput";
+import { Toaster } from "react-hot-toast";
+
+import LocalStorageContextProvider from "./contexts/LocalStorageContext";
+
+import { PageList } from "./pageList";
+import RecordListPage from "./pages/RecordListPage";
+import AddRecordPage from "./pages/AddRecordPage";
+
 import Header from "./components/Header";
 
 import "./App.css";
-import Input from "./components/Input";
-import SubmitButton from "./components/SubmitButton";
-import MultipleSelect from "./components/MultipleSelect";
-import LocalStorageContextProvider, {
-  LocalStorageContext,
-} from "./contexts/LocalStorageContext";
-import { PageList } from "./pageList";
-import toast, { Toaster } from "react-hot-toast";
-import RecordListPage from "./pages/RecordListPage";
-import UploadModal from "./components/UploadModal";
-import CurrencyConfigEntry from "./components/CurrencyConfig/CurrencyConfigEntry";
-import { Currency, CurrencyConfigType } from "./backend/types";
 
-type Form = {
-  amount: number;
-  description: string;
-  labels: string[];
-  currencyConfig: CurrencyConfigType;
-};
-
-const defaultFormValue: Form = {
-  amount: 0,
-  description: "",
-  labels: [],
-  currencyConfig: {
-    currency: Currency.EUR,
-    exchangeRate: 1,
-  },
-};
 function App() {
   const [page, setPage] = React.useState<PageList>(PageList.HOME_PAGE);
-  const { addExpenditure, store } = React.useContext(LocalStorageContext);
-  const [formValue, setFormValue] = React.useState<Form>(defaultFormValue);
-  const [uploadFormModalOpened, setUploadFormOpened] = React.useState(false);
-
-  const labelsAddedInStore = store.expenditures.reduce<string[]>(
-    (labels, expenditure) =>
-      Array.from(new Set([...labels, ...expenditure.labels])),
-    []
-  );
-
-  const saveForm = () => {
-    if (formValue.amount <= 0 || !formValue.description) {
-      toast.error("missing description or amount is invalid.");
-      return;
-    }
-    if ([0, 1].includes(formValue.currencyConfig.exchangeRate)) {
-      toast.error("Exchange rate cannot be 0 or 1");
-      return;
-    }
-
-    const finalAmountInEuro =
-      formValue.currencyConfig.currency === Currency.EUR
-        ? formValue.amount
-        : formValue.amount / formValue.currencyConfig.exchangeRate;
-    addExpenditure({
-      ...formValue,
-      amount: finalAmountInEuro / 100,
-      date: new Date(),
-      id: `${new Date().getTime()}-${Math.random().toString().split(".")[1]}`,
-    });
-    setFormValue(defaultFormValue);
-    toast.success("Expenditure logged!");
-  };
 
   return (
     <div className="absolute vertical inset-0 flex p-4 bg-primary-700 overflow-hidden">
       <Toaster />
-      <UploadModal
-        opened={uploadFormModalOpened}
-        onClose={() => setUploadFormOpened(false)}
-      />
       <Header currentPage={page} goPage={setPage} />
-      {page === PageList.HOME_PAGE && (
-        <div className="flex-1 vertical overflow-hidden">
-          <AmountInput
-            currency={formValue.currencyConfig.currency}
-            value={formValue.amount}
-            onChange={(newValue) =>
-              setFormValue({ ...formValue, amount: newValue })
-            }
-          />
-          <CurrencyConfigEntry
-            amount={formValue.amount}
-            currencyConfig={formValue.currencyConfig}
-            onChangeCurrency={(newConfig) =>
-              setFormValue({ ...formValue, currencyConfig: newConfig })
-            }
-          />
-          <Input
-            name="description"
-            label="description"
-            value={formValue.description}
-            onChange={(desc) =>
-              setFormValue({ ...formValue, description: desc })
-            }
-          />
-          <MultipleSelect
-            name="labels"
-            label="tags"
-            values={formValue.labels}
-            onChange={(labels) => setFormValue({ ...formValue, labels })}
-            selectableOptions={labelsAddedInStore}
-          />
-          <div className="flex-1" />
-          <SubmitButton
-            onOpenUploadModal={() => setUploadFormOpened(true)}
-            onSubmit={saveForm}
-          />
-        </div>
-      )}
+      {page === PageList.HOME_PAGE && <AddRecordPage />}
       {page === PageList.RECORD_LIST_PAGE && <RecordListPage />}
     </div>
   );

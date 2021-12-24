@@ -16,6 +16,10 @@ export type Expenditure = {
   currencyConfig?: CurrencyConfigType;
 };
 
+export type Form = Omit<Expenditure, "id" | "date" | "currencyConfig"> & {
+  currencyConfig: CurrencyConfigType;
+};
+
 export type DB = {
   expenditures: Expenditure[];
 };

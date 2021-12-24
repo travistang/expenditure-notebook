@@ -1,7 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
 import getSymbolFromCurrency from "currency-symbol-map";
-import { Expenditure } from "../../backend/types";
+import { Currency, Expenditure } from "../../backend/types";
 
 type Props = {
   record: Expenditure;
@@ -17,12 +17,13 @@ export default function RecordListRow({ record }: Props) {
       </span>
       <div className="flex flex-col justify-center col-span-3 whitespace-nowrap overflow-hidden overflow-ellipsis">
         {record.amount.toFixed(2)}€
-        {record.currencyConfig && (
-          <span className="text-opacity-60 text-xs font-bold">
-            ({(record.amount * record.currencyConfig.exchangeRate).toFixed(2)}{" "}
-            {getSymbolFromCurrency(record.currencyConfig.currency)})
-          </span>
-        )}
+        {record.currencyConfig &&
+          record.currencyConfig.currency !== Currency.EUR && (
+            <span className="text-opacity-60 text-xs font-bold">
+              ({(record.amount * record.currencyConfig.exchangeRate).toFixed(2)}{" "}
+              {getSymbolFromCurrency(record.currencyConfig.currency)})
+            </span>
+          )}
       </div>
     </div>
   );

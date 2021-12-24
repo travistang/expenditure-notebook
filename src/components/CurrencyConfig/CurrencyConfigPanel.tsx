@@ -32,7 +32,7 @@ export default function CurrencyConfigPanel({
         ))}
       </div>
       <Input
-        label={`Exchange rate (1 EUR -> ?)`}
+        label="Exchange rate (1 EUR -> ?)"
         value={exchangeRate.toString()}
         onChange={setExchangeRate}
         name="exchangeRate"

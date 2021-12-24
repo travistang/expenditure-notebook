@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/expenditure-notebook/static/css/main.b2575e9b.chunk.css",
-    "main.js": "/expenditure-notebook/static/js/main.eda15d76.chunk.js",
-    "main.js.map": "/expenditure-notebook/static/js/main.eda15d76.chunk.js.map",
-    "runtime-main.js": "/expenditure-notebook/static/js/runtime-main.e9778c40.js",
-    "runtime-main.js.map": "/expenditure-notebook/static/js/runtime-main.e9778c40.js.map",
-    "static/js/2.edcb7b14.chunk.js": "/expenditure-notebook/static/js/2.edcb7b14.chunk.js",
-    "static/js/2.edcb7b14.chunk.js.map": "/expenditure-notebook/static/js/2.edcb7b14.chunk.js.map",
-    "static/js/3.36bc2131.chunk.js": "/expenditure-notebook/static/js/3.36bc2131.chunk.js",
-    "static/js/3.36bc2131.chunk.js.map": "/expenditure-notebook/static/js/3.36bc2131.chunk.js.map",
+    "main.css": "/expenditure-notebook/static/css/main.ea4e7c08.chunk.css",
+    "main.js": "/expenditure-notebook/static/js/main.8d5f9d0d.chunk.js",
+    "main.js.map": "/expenditure-notebook/static/js/main.8d5f9d0d.chunk.js.map",
+    "runtime-main.js": "/expenditure-notebook/static/js/runtime-main.03d1ed56.js",
+    "runtime-main.js.map": "/expenditure-notebook/static/js/runtime-main.03d1ed56.js.map",
+    "static/js/2.48f05c11.chunk.js": "/expenditure-notebook/static/js/2.48f05c11.chunk.js",
+    "static/js/2.48f05c11.chunk.js.map": "/expenditure-notebook/static/js/2.48f05c11.chunk.js.map",
+    "static/js/3.10605faf.chunk.js": "/expenditure-notebook/static/js/3.10605faf.chunk.js",
+    "static/js/3.10605faf.chunk.js.map": "/expenditure-notebook/static/js/3.10605faf.chunk.js.map",
     "index.html": "/expenditure-notebook/index.html",
-    "static/css/main.b2575e9b.chunk.css.map": "/expenditure-notebook/static/css/main.b2575e9b.chunk.css.map",
-    "static/js/2.edcb7b14.chunk.js.LICENSE.txt": "/expenditure-notebook/static/js/2.edcb7b14.chunk.js.LICENSE.txt"
+    "static/css/main.ea4e7c08.chunk.css.map": "/expenditure-notebook/static/css/main.ea4e7c08.chunk.css.map",
+    "static/js/2.48f05c11.chunk.js.LICENSE.txt": "/expenditure-notebook/static/js/2.48f05c11.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.e9778c40.js",
-    "static/js/2.edcb7b14.chunk.js",
-    "static/css/main.b2575e9b.chunk.css",
-    "static/js/main.eda15d76.chunk.js"
+    "static/js/runtime-main.03d1ed56.js",
+    "static/js/2.48f05c11.chunk.js",
+    "static/css/main.ea4e7c08.chunk.css",
+    "static/js/main.8d5f9d0d.chunk.js"
   ]
 }

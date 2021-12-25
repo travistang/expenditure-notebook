@@ -1,7 +1,11 @@
-// const CracoWorkboxPlugin = require("craco-workbox");
+const CracoWorkboxPlugin = require("craco-workbox");
 
 module.exports = {
-  // { plugin: CracoWorkboxPlugin },
+  plugins: [
+    {
+      plugin: CracoWorkboxPlugin,
+    },
+  ],
   style: {
     postcssOptions: {
       plugins: [require("tailwindcss"), require("autoprefixer")],

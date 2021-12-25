@@ -20,7 +20,7 @@ module.exports = {
         900: colors.gray[900],
       },
       secondary: colors.orange,
-      color: colors.coolGray,
+      color: colors.gray,
     },
     extend: {},
   },

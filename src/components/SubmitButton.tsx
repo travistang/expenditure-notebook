@@ -1,9 +1,10 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faQrcode } from "@fortawesome/free-solid-svg-icons";
-import { Currency, Form } from "../backend/types";
-import toast from "react-hot-toast";
-import { LocalStorageContext } from "../contexts/LocalStorageContext";
+import { Form } from "../backend/types";
+import { mapFormToExpenditure, validateForm } from "../domain/Expenditure";
+import Repository from '../backend/dexie';
 
 type Props = {
   onSubmit: () => void;
@@ -15,38 +16,27 @@ export default function SubmitButton({
   formValue,
   onSubmit,
 }: Props) {
-  const { addExpenditure } = React.useContext(LocalStorageContext);
   const saveForm = () => {
-    if (formValue.amount <= 0 || !formValue.description) {
-      toast.error("missing description or amount is invalid.");
-      return;
-    }
-    if (
-      [0, 1].includes(formValue.currencyConfig.exchangeRate) &&
-      formValue.currencyConfig.currency !== Currency.EUR
-    ) {
-      toast.error("Exchange rate cannot be 0 or 1");
+    const validationError = validateForm(formValue);
+    if (validationError) {
+      toast.error(validationError);
       return;
     }
 
-    const finalAmountInEuro =
-      formValue.currencyConfig.currency === Currency.EUR
-        ? formValue.amount
-        : formValue.amount / formValue.currencyConfig.exchangeRate;
-    addExpenditure({
-      ...formValue,
-      amount: finalAmountInEuro / 100,
-      date: new Date(),
-      id: `${new Date().getTime()}-${Math.random().toString().split(".")[1]}`,
+    const newExpenditure = mapFormToExpenditure(formValue);
+    Repository.add(newExpenditure).then(() => {
+      onSubmit();
+      toast.success("Expenditure logged!");
+    }).catch(() => {
+      toast.error("Failed to add expenditure");
     });
-    onSubmit();
-    toast.success("Expenditure logged!");
   };
+
   return (
     <div className="h-1/6 md:h-1/3 center w-full relative">
       <button
         onClick={saveForm}
-        className="h-20 w-20 md:h-96 md:w-96 lg:h-48 lg:w-48 rounded-full bg-secondary-500 text-xl md:text-7xl"
+        className="h-20 w-20 md:h-96 md:w-96 lg:h-48 lg:w-48 rounded-full bg-primary text-background text-xl md:text-7xl"
       >
         <FontAwesomeIcon icon={faPen} />
       </button>

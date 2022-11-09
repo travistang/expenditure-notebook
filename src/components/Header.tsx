@@ -1,4 +1,4 @@
-import { faClipboard, faHome, faList } from "@fortawesome/free-solid-svg-icons";
+import { faClipboard, faHome, faList, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { PageList } from "../pageList";
@@ -20,8 +20,10 @@ export default function Header({ currentPage, goPage }: Props) {
 
   return (
     <>
-      <header className="h-16 flex-0 center relative">
-        <span className="uppercase text-lg">Expenditure logbook</span>
+      <header className="h-16 flex-0 flex items-center relative">
+        <span className="text font-bold flex items-center gap-2">
+          Expenditure logbook
+        </span>
         <div className="absolute right-0 top-0 h-full horizontal-center gap-4 text-xl">
           <FontAwesomeIcon
             icon={faClipboard}

@@ -24,7 +24,7 @@ export default function CurrencyConfigPanel({
         {Object.values(Currency).map((currency) => (
           <button
             onClick={() => onChangeCurrency(currency)}
-            className="rounded-lg bg-primary-500 border-none bg-transparent flex flex-col items-center justify-center"
+            className="rounded-lg bg-background-secondary border-none bg-transparent flex flex-col items-center justify-center"
           >
             <div className="text-5xl">{getSymbolFromCurrency(currency)}</div>
             <div>{currency}</div>

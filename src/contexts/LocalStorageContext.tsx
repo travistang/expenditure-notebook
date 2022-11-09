@@ -1,5 +1,5 @@
 import React from "react";
-import { getData, saveData } from "../backend/ls";
+import Repository from "../backend/ls";
 import { DB, DEFAULT_DB_VALUE, Expenditure } from "../backend/types";
 
 export type LocalStorageContextType = {
@@ -14,14 +14,15 @@ type Props = {
   children: React.ReactNode;
 };
 export default function LocalStorageContextProvider({ children }: Props) {
-  const db: DB = getData() || { expenditures: [] };
+  const db: DB = Repository.getData() || { expenditures: [] };
   const [store, setStore] = React.useState<DB>(db);
 
   React.useEffect(() => {
     if (store) {
-      saveData(store);
+      Repository.saveData(store);
     }
   }, [store]);
+
   const addExpenditure = (expenditure: Expenditure) => {
     setStore({
       ...store,

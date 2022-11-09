@@ -1,0 +1,1 @@
+export type Modifier<T extends object, U extends keyof T = keyof T> = (field: U) => (value: T[U]) => void;

@@ -10,7 +10,7 @@ export default function SelectedOptionChip({ text, onDelete }: Props) {
   return (
     <div
       onClick={onDelete}
-      className="horizontal-center px-2 py-1 rounded-md bg-primary-500 text-sm text-color-100"
+      className="horizontal-center px-2 py-1 rounded-md bg-background-secondary text-sm text-font"
     >
       <span className="pr-1">{text}</span>
       <FontAwesomeIcon icon={faTimes} className="pl-1 w-8 h-8" />

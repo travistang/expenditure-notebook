@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import SelectedOptionChip from "./SelectedOptionChip";
+import classNames from "classnames";
 
 type Props = {
   values: string[];
@@ -8,12 +9,16 @@ type Props = {
   label: string;
   onChange: (values: string[]) => void;
   selectableOptions?: string[];
+  inputClassName?: string;
+  className?: string;
 };
 export default function MultipleSelect({
   name,
   label,
   values,
   onChange,
+  className,
+  inputClassName,
   selectableOptions = [],
 }: Props) {
   const [editingValue, setEditingValue] = React.useState("");
@@ -63,7 +68,7 @@ export default function MultipleSelect({
           .sort()
           .slice(0, 5);
   return (
-    <div className="vertical gap-1 overflow-y-visible">
+    <div className={classNames("vertical gap-1 overflow-y-visible", className)}>
       <label htmlFor={name}>{label}</label>
       <div className="flex items-center gap-2 overflow-x-auto max-w-md">
         {values.map((value) => (
@@ -76,24 +81,25 @@ export default function MultipleSelect({
       </div>
       <div
         className={classnames(
-          "relative inline-block rounded-lg bg-primary-500 p-4 horizontal overflow-x-auto overflow-y-hidden",
-          "gap-2"
+          "relative inline-block rounded-full bg-background-secondary p-4 horizontal overflow-x-auto overflow-y-hidden",
+          "gap-2",
+          inputClassName,
         )}
       >
         <input
           onKeyDown={onKeyDown}
-          className="bg-primary-500 w-full outline-none text-xl"
+          className="bg-background-secondary w-full outline-none text-xl"
           value={editingValue}
           onChange={(e) => setEditingValue(e.target.value)}
         />
       </div>
       {displayingSelectableOptions?.length > 0 && (
-        <div className="absolute min-h-20 bg-primary-500 rounded-lg left-0 right-0 bottom-0 z-20 max-h-32 mt-2 overflow-y-auto">
+        <div className={("absolute min-h-20 bg-background-secondary rounded-lg left-0 right-0 bottom-0 z-20 max-h-32 mt-2 overflow-y-auto")}>
           {displayingSelectableOptions.map((opt) => (
             <div
               key={opt}
               onClick={() => onAddOption(opt)}
-              className="cursor-pointer px-2 h-12 whitespace-nowrap overflow-ellipsis horizontal-center hover:bg-primary-700"
+              className="cursor-pointer px-2 h-12 whitespace-nowrap overflow-ellipsis horizontal-center hover:bg-background"
             >
               {opt}
             </div>

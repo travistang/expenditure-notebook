@@ -1,5 +1,5 @@
 import { Currency, Expenditure, Form } from "../backend/types";
-import { FilterType } from "./Filter";
+import { FilterType, normalizeNumericFilter } from "./Filter";
 
 export const validateForm = (form: Form): string | null => {
   if (form.amount <= 0 || !form.description) {
@@ -26,6 +26,13 @@ export const mapFormToExpenditure = (form: Form): Expenditure => {
     amount: finalAmountInEuro / 100,
     date: new Date(),
     id: `${new Date().getTime()}-${Math.random().toString().split(".")[1]}`,
+  };
+};
+
+export const normalizeExpenditureFilter = (filter: ExpenditureFilter): ExpenditureFilter => {
+  return {
+    ...filter,
+    amount: normalizeNumericFilter(filter.amount),
   };
 };
 

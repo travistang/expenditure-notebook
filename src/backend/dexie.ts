@@ -1,10 +1,9 @@
-import { isAfter } from "date-fns";
 import Dexie, { Table } from "dexie";
-import { hasEvery } from "../utils/Array";
-import { caseInsensitiveInclude } from "../utils/String";
+import { ExpenditureFilter } from "../domain/Expenditure";
+import { expenditureMatchesFilter } from "../domain/Filter";
 import { LS_STORAGE_KEY } from "./ls";
 import { RepositoryBase } from "./RepositoryBase";
-import { Expenditure } from "./types";
+import { Expenditure, PaginationConfig } from "./types";
 
 class DexieRepository extends Dexie implements RepositoryBase<Expenditure> {
   expenditures!: Table<Expenditure>;
@@ -35,7 +34,7 @@ class DexieRepository extends Dexie implements RepositoryBase<Expenditure> {
     return (await this.expenditures.get(key ?? "")) ?? null;
   }
 
-  async getExpenditureByPage(paginationConfig?: { pageSize?: number, page?: number }) {
+  async getExpenditureByPage(filter: ExpenditureFilter, paginationConfig?: Partial<PaginationConfig>) {
     const { page = 0, pageSize = 25 } = paginationConfig ?? {};
     return this.expenditures
       .orderBy("date")
@@ -63,30 +62,14 @@ class DexieRepository extends Dexie implements RepositoryBase<Expenditure> {
     await this.expenditures.update(id, data);
   }
 
-  async search(searchData: Partial<Expenditure>) {
+  async search(filter: ExpenditureFilter, paginationConfig?: Partial<PaginationConfig>) {
+    const { page = 0, pageSize = 25 } = paginationConfig ?? {};
     return this.expenditures
-      .filter((expenditure) => {
-        if (
-          searchData.description &&
-          !caseInsensitiveInclude(
-            expenditure.description,
-            searchData.description
-          )
-        ) {
-          return false;
-        }
-        if (
-          !!searchData.labels?.length &&
-          !hasEvery(searchData.labels, expenditure.labels)
-        ) {
-          return false;
-        }
-
-        if (searchData.date && !isAfter(searchData.date, expenditure.date)) {
-          return false;
-        }
-        return true;
-      })
+      .orderBy("date")
+      .filter((expenditure) => expenditureMatchesFilter(expenditure, filter))
+      .reverse()
+      .offset(pageSize * page)
+      .limit(pageSize)
       .toArray();
   }
 }

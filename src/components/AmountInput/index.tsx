@@ -1,7 +1,7 @@
 import classNames from "classnames";
-import getSymbolFromCurrency from "currency-symbol-map";
 import React, { KeyboardEventHandler } from "react";
 import { Currency } from "../../backend/types";
+import { getValueString, onAddDigit, onRemoveDigit } from "./useDigitHandler";
 
 type Props = {
   nullable?: boolean;
@@ -12,32 +12,10 @@ type Props = {
   className?: string;
   innerClassName?: string;
   maxFontSize?: number;
+  mapValueFn?: (n: number | null) => number | null;
 };
 
 const DEFAULT_FONT_SIZE = 84;
-const getValueString = (value: number | null, currency?: Currency, nullable?: boolean) => {
-  if (nullable && value === null) {
-    return '';
-  }
-  const currencyString = currency ? getSymbolFromCurrency(
-    currency
-  ) : '';
-  const usingValue = value ?? 0;
-  return `${(usingValue / 100).toFixed(2)}${currencyString}`;
-};
-const onRemoveDigit = (value: number | null, nullable?: boolean) => {
-  if (nullable && !value) {
-    return null;
-  }
-
-  const usingValue = value ?? 0;
-  return Math.floor(usingValue / 10);
-}
-
-const onAddDigit = (value: number | null, digit: number, nullable?: boolean) => {
-  if (value === null) return digit;
-  return value * 10 + digit;
-}
 
 export default function AmountInput({
   value,
@@ -48,17 +26,18 @@ export default function AmountInput({
   className,
   innerClassName,
   maxFontSize = DEFAULT_FONT_SIZE,
+  mapValueFn,
 }: Props) {
   const inputRef = React.useRef(null);
 
-  const valueString = getValueString(value ?? null, currency, nullable);
+  const valueString = getValueString(value ?? null, currency, nullable, mapValueFn);
   const screenWidth = window.screen.width;
   const fontSize = Math.min((1.5 * screenWidth) / valueString.length, maxFontSize);
   const onInput: KeyboardEventHandler = (e) => {
     const key = e.key;
     const keyAsDigit = parseInt(key);
     if (!Number.isNaN(keyAsDigit)) {
-      const newValue = onAddDigit(value, keyAsDigit, nullable);
+      const newValue = onAddDigit(value, keyAsDigit);
       onChange(newValue);
       return;
     }
@@ -77,7 +56,7 @@ export default function AmountInput({
         style={{
           fontSize,
         }}
-        className={classNames(className ?? "center text-font bg-background text-center")}
+        className={classNames(innerClassName ?? "center text-font bg-background text-center")}
         value={valueString}
         type="tel"
         onKeyDown={onInput}

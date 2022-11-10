@@ -39,7 +39,7 @@ export default function CurrencyInputSection({ currencyConfig, onChange }: Props
               value={currencyConfig.exchangeRate * 100}
               onChange={value => updateConfig('exchangeRate')((value ?? 0) / 100)}
               className="bg-font bg-opacity-0 text-right"
-              fontSizeFn={(valueStringLength, screenWidth) => Math.min((1.5 * screenWidth) / valueStringLength, 22)}
+              maxFontSize={22}
             />
           </>
         )}

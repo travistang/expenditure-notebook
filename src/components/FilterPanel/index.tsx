@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { faCaretDown, faCaretUp, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ExpenditureFilter } from '../../domain/Expenditure';
 import { Modifier } from '../../utils/types';
 import AdvancedFilterOptionSection from './AdvancedFilterOptionSection';
+import AdvancedFilterDropdown from './AdvancedFilterDropdown';
+import { useRecoilState } from 'recoil';
+import { filterAtom } from '../../atoms/filterAtom';
 
 export default function FilterPanel() {
   const [expanded, setExpanded] = useState(false);
-  const [filterOptions, setFilterOption] = useState<ExpenditureFilter>({});
+  const [filterOptions, setFilterOption] = useRecoilState(filterAtom);
 
   const setFilter: Modifier<ExpenditureFilter> = (field) => (value) => {
     setFilterOption({
@@ -25,16 +28,13 @@ export default function FilterPanel() {
       )}>
         <div className="flex items-center gap-2">
           <FontAwesomeIcon icon={faSearch} className="text-font" />
-          <input className='outline-none bg-background-secondary rounded-full px-2' />
+          <input value={filterOptions.description?.contains ?? ''} onChange={e => setFilter('description')({ contains: e.target.value })} className='outline-none bg-background-secondary rounded-full px-2' />
         </div>
         {expanded && (
           <AdvancedFilterOptionSection filter={filterOptions} setFilter={setFilter} />
         )}
       </div>
-      <div className="flex items-center gap-2 text-opacity-75 text-xs" onClick={() => setExpanded(!expanded)}>
-        <FontAwesomeIcon icon={expanded ? faCaretUp : faCaretDown} />
-        {expanded ? "Hide filter options" : "Advanced options..."}
-      </div>
+      <AdvancedFilterDropdown expanded={expanded} onToggle={() => setExpanded(!expanded)} />
     </div>
   )
 }

@@ -5,7 +5,7 @@ export type FieldsWithType<T extends object, Fs extends T[keyof T]> = keyof {
 };
 
 export type NumericType = number | Date;
-export type NumericalFilter<T extends NumericType> = {
+export type NumericalFilter<T extends NumericType = NumericType> = {
   gte?: T;
   lte?: T;
   equal?: T;
@@ -77,6 +77,23 @@ const numericsMatchFilter = (
   return true;
 };
 
+export const normalizeNumericFilter = (
+  filter?: NumericalFilter<number>,
+  dividedBy = 100,
+): NumericalFilter<number> | undefined => {
+  if (!filter) return undefined;
+  const normalizeValue = (v?: number) => {
+    return v ? v / dividedBy : v;
+  };
+  const entries = Object.entries(filter).map<
+    [keyof NumericalFilter<number>, number | undefined]
+  >(([key, value]) => [
+    key as keyof NumericalFilter<number>,
+    normalizeValue(value),
+  ]);
+  return Object.fromEntries(entries);
+};
+
 const arrayMatchFilter = <T>(
   array: Array<T>,
   filter: ArrayFilter<T>
@@ -143,3 +160,8 @@ export const expenditureMatchesFilter = (
 
   return true;
 };
+
+
+export const isEmpty = (filter: FilterType<any>) => {
+  return Object.entries(filter).length === 0;
+}

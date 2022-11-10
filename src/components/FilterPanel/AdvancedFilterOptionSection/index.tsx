@@ -1,9 +1,9 @@
 import React from 'react';
-import { Currency } from '../../../backend/types';
 import { ExpenditureFilter } from '../../../domain/Expenditure';
 import { NumericalFilter } from '../../../domain/Filter';
 import { Modifier } from '../../../utils/types';
-import AmountInput from '../../AmountInput';
+import MultipleSelect from '../../MultipleSelect';
+import AmountFilter from './AmountFilter';
 
 
 type Props = {
@@ -16,27 +16,30 @@ export default function AdvancedFilterOptionSection({ filter, setFilter }: Props
       ...filter.amount,
       [field]: value
     });
-  }
+  };
   return (
     <div className="grid grid-cols-6 gap-2 pt-4">
-      <AmountInput
-        nullable
+      <AmountFilter
+        label="Min. amount"
         onChange={v => setAmountFilter('lte')(v ?? undefined)}
         value={filter.amount?.lte ?? null}
-        label="Min. amount"
-        className='col-span-3'
-        maxFontSize={16}
-        currency={Currency.EUR}
       />
-      <AmountInput
-        nullable
+      <AmountFilter
+        label="Max. amount"
         onChange={v => setAmountFilter('gte')(v ?? undefined)}
         value={filter.amount?.gte ?? null}
-        label="Max. amount"
-        className='col-span-3'
-        maxFontSize={16}
-        currency={Currency.EUR}
       />
+      <MultipleSelect
+        label="Containing labels"
+        name="labels"
+        className='col-span-full'
+        chipClassName='bg-font bg-opacity-20 py-0'
+        inputClassName='rounded-full h-8 px-4 py-0 text-sm bg-font bg-opacity-20 font-bold'
+        innerInputClassName='bg-opacity-0 text-sm'
+        values={filter.labels?.containsEvery ?? []}
+        onChange={v => setFilter('labels')({
+        containsEvery: v
+      })} />
     </div>
   );
 }

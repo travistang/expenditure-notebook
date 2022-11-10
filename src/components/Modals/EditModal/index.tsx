@@ -1,12 +1,11 @@
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { modalAtom, ModalType, useCloseModal, useSetEditFormValue } from '../../../atoms/modalAtom';
-import Button from '../../Button';
 import DisplayInput from '../../DisplayInput';
 import Modal from '../../Modal';
 import MultipleSelect from '../../MultipleSelect';
 import Section from '../../Section';
+import ButtonsRow from './ButtonsRow';
 import CategorySection from './CategorySection';
 import CurrencyInputSection from './CurrencyInputSection';
 import ValueInfo from './ValueInfo';
@@ -49,14 +48,7 @@ export default function EditModal() {
           />
         </Section>
         <div className="flex-1" />
-        <div className="flex items-center justify-between sticky -bottom-4 bg-background-secondary">
-          <Button
-            onClick={console.log}
-            text="Delete"
-            icon={faTrash}
-            className="text-error child:fill-error h-12 mb-2"
-          />
-        </div>
+        <ButtonsRow expenditure={expenditure} />
       </div>
     </Modal>
   )

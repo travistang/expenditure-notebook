@@ -40,3 +40,8 @@ export type DB = {
 export const DEFAULT_DB_VALUE: DB = {
   expenditures: [],
 };
+
+export type PaginationConfig = {
+  pageSize: number;
+  page: number;
+}

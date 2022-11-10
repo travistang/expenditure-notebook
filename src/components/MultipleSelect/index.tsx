@@ -10,6 +10,8 @@ type Props = {
   onChange: (values: string[]) => void;
   selectableOptions?: string[];
   inputClassName?: string;
+  innerInputClassName?: string;
+  chipClassName?: string;
   className?: string;
 };
 export default function MultipleSelect({
@@ -19,6 +21,8 @@ export default function MultipleSelect({
   onChange,
   className,
   inputClassName,
+  innerInputClassName,
+  chipClassName,
   selectableOptions = [],
 }: Props) {
   const [editingValue, setEditingValue] = React.useState("");
@@ -73,6 +77,7 @@ export default function MultipleSelect({
       <div className="flex items-center gap-2 overflow-x-auto max-w-md">
         {values.map((value) => (
           <SelectedOptionChip
+            className={chipClassName}
             text={value}
             key={value}
             onDelete={onRemove(value)}
@@ -88,7 +93,7 @@ export default function MultipleSelect({
       >
         <input
           onKeyDown={onKeyDown}
-          className="bg-background-secondary w-full outline-none text-xl"
+          className={classnames("bg-background-secondary w-full outline-none text-xl", innerInputClassName)}
           value={editingValue}
           onChange={(e) => setEditingValue(e.target.value)}
         />

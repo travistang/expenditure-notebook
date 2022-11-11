@@ -23,7 +23,7 @@ export default function AddRecordPage() {
   const reset = () => setFormValue(defaultFormValue);
 
   return (
-    <div className="flex-1 vertical overflow-hidden">
+    <div className="flex-shrink-0 flex-1 vertical overflow-hidden">
       <UploadModal
         opened={uploadFormModalOpened}
         onClose={() => setUploadFormOpened(false)}

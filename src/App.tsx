@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot } from "recoil";
 
 import { PageList } from "./pageList";
 import RecordListPage from "./pages/RecordListPage";
 import AddRecordPage from "./pages/AddRecordPage";
-import Repository from './backend/dexie';
+import Repository from "./backend/dexie";
 import Header from "./components/Header";
 
 import "./App.css";
 import EditModal from "./components/Modals/EditModal";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [page, setPage] = React.useState<PageList>(PageList.HOME_PAGE);
@@ -29,6 +30,7 @@ export default function App() {
         <Header currentPage={page} goPage={setPage} />
         {page === PageList.HOME_PAGE && <AddRecordPage />}
         {page === PageList.RECORD_LIST_PAGE && <RecordListPage />}
+        <Footer route={page} onChangeRoute={setPage} />
       </div>
     </RecoilRoot>
   );

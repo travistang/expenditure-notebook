@@ -1,14 +1,20 @@
-import React from 'react';
-import { useRecoilState } from 'recoil';
-import { modalAtom, ModalType, useCloseModal, useSetEditFormValue } from '../../../atoms/modalAtom';
-import DisplayInput from '../../DisplayInput';
-import Modal from '../../Modal';
-import MultipleSelect from '../../MultipleSelect';
-import Section from '../../Section';
-import ButtonsRow from './ButtonsRow';
-import CategorySection from './CategorySection';
-import CurrencyInputSection from './CurrencyInputSection';
-import ValueInfo from './ValueInfo';
+import React from "react";
+import { useRecoilState } from "recoil";
+import {
+  modalAtom,
+  ModalType,
+  useCloseModal,
+  useSetEditFormValue,
+} from "../../../atoms/modalAtom";
+import DateInput from "../../DateInput";
+import DisplayInput from "../../DisplayInput";
+import Modal from "../../Modal";
+import MultipleSelect from "../../MultipleSelect";
+import Section from "../../Section";
+import ButtonsRow from "./ButtonsRow";
+import CategorySection from "./CategorySection";
+import CurrencyInputSection from "./CurrencyInputSection";
+import ValueInfo from "./ValueInfo";
 
 export default function EditModal() {
   const [modalAtomValue] = useRecoilState(modalAtom);
@@ -26,30 +32,39 @@ export default function EditModal() {
             value={expenditure.description}
             name="description"
             label=""
-            inputClassName='border border-font rounded-lg px-2 -mx-2'
+            inputClassName="border border-font rounded-lg px-2 -mx-2"
             onChange={setEditFormValue("description")}
           />
-          <ValueInfo amount={expenditure.amount} currencyConfig={expenditure.currencyConfig} />
+          <ValueInfo
+            amount={expenditure.amount}
+            currencyConfig={expenditure.currencyConfig}
+          />
         </div>
         <CategorySection
           category={expenditure.category}
-          onChange={setEditFormValue('category')}
+          onChange={setEditFormValue("category")}
         />
         <CurrencyInputSection
           currencyConfig={expenditure.currencyConfig}
-          onChange={setEditFormValue('currencyConfig')}
+          onChange={setEditFormValue("currencyConfig")}
         />
-        <Section title='Labels'>
+        <Section title="Labels">
           <MultipleSelect
             values={expenditure.labels}
             label=""
             name="labels"
-            onChange={setEditFormValue('labels')}
+            onChange={setEditFormValue("labels")}
+          />
+        </Section>
+        <Section title="Date">
+          <DateInput
+            date={expenditure.date?.getTime() ?? Date.now()}
+            onChange={(d) => setEditFormValue("date")(new Date(d))}
           />
         </Section>
         <div className="flex-1" />
         <ButtonsRow expenditure={expenditure} />
       </div>
     </Modal>
-  )
+  );
 }

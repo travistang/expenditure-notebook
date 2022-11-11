@@ -27,11 +27,11 @@ export default function Modal({
       <div
         onClick={(e) => e.stopPropagation()}
         className={classnames(
-          "rounded-t-xl shadow-lg w-full bg-primary-600 text-font vertical overflow-y-auto bg-background-secondary",
+          "rounded-t-xl shadow-lg w-full bg-primary-600 text-font vertical overflow-y-auto overflow-x-hidden bg-background-secondary",
           className ?? "h-2/3 p-2"
         )}
       >
-        <span className="font-bold text-sm text-font sticky -top-4 pt-4 pb-4 bg-background-secondary rounded-t-lg">
+        <span className="z-50 font-bold text-sm text-font sticky -top-4 pt-4 pb-4 bg-background-secondary rounded-t-lg">
           {title}
         </span>
         {children}

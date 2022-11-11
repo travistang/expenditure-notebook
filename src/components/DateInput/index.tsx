@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { useState } from "react";
 import Calendar from "../Calendar";
 import MonthYearPicker from "./MonthYearPicker";
+import TimePicker from "./TimePicker";
 
 export enum DateInputMode {
   Date = "date",
@@ -17,7 +18,7 @@ type Props = {
 export default function DateInput({
   date,
   onChange,
-  mode = DateInputMode.Date,
+  mode = DateInputMode.DateTime,
   className,
 }: Props) {
   const [viewingMonth, setViewingMonth] = useState<number>(date);
@@ -29,6 +30,9 @@ export default function DateInput({
         date={viewingMonth}
         onChange={onChange}
       />
+      {mode === DateInputMode.DateTime && (
+        <TimePicker time={date} onChange={onChange} />
+      )}
     </div>
   );
 }

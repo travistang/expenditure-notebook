@@ -31,11 +31,13 @@ export default function EditModal() {
           <DisplayInput
             value={expenditure.description}
             name="description"
+            className="flex-1 flex-shrink-0"
             label=""
-            inputClassName="border border-font rounded-lg px-2 -mx-2"
+            inputClassName="border border-font rounded-lg px-2 -mx-2 flex-1 flex-shrink-0"
             onChange={setEditFormValue("description")}
           />
           <ValueInfo
+            onChangeAmount={setEditFormValue("amount")}
             amount={expenditure.amount}
             currencyConfig={expenditure.currencyConfig}
           />

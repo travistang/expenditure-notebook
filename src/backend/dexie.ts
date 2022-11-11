@@ -34,7 +34,10 @@ class DexieRepository extends Dexie implements RepositoryBase<Expenditure> {
     return (await this.expenditures.get(key ?? "")) ?? null;
   }
 
-  async getExpenditureByPage(filter: ExpenditureFilter, paginationConfig?: Partial<PaginationConfig>) {
+  async getExpenditureByPage(
+    filter: ExpenditureFilter,
+    paginationConfig?: Partial<PaginationConfig>
+  ) {
     const { page = 0, pageSize = 25 } = paginationConfig ?? {};
     return this.expenditures
       .orderBy("date")
@@ -55,14 +58,18 @@ class DexieRepository extends Dexie implements RepositoryBase<Expenditure> {
   }
 
   async remove(id: string) {
-    return this.expenditures.delete(id);
+    await this.expenditures.delete(id);
+    return true;
   }
 
   async edit(id: string, data: Omit<Expenditure, "id">) {
-    await this.expenditures.update(id, data);
+    return !!(await this.expenditures.update(id, data));
   }
 
-  async search(filter: ExpenditureFilter, paginationConfig?: Partial<PaginationConfig>) {
+  async search(
+    filter: ExpenditureFilter,
+    paginationConfig?: Partial<PaginationConfig>
+  ) {
     const { page = 0, pageSize = 25 } = paginationConfig ?? {};
     return this.expenditures
       .orderBy("date")

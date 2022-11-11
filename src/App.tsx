@@ -28,8 +28,10 @@ export default function App() {
         <EditModal />
         <Toaster />
         <Header currentPage={page} goPage={setPage} />
-        {page === PageList.HOME_PAGE && <AddRecordPage />}
-        {page === PageList.RECORD_LIST_PAGE && <RecordListPage />}
+        <div className="flex flex-col items-stretch flex-1">
+          {page === PageList.HOME_PAGE && <AddRecordPage />}
+          {page === PageList.RECORD_LIST_PAGE && <RecordListPage />}
+        </div>
         <Footer route={page} onChangeRoute={setPage} />
       </div>
     </RecoilRoot>

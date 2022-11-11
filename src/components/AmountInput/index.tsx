@@ -13,6 +13,7 @@ type Props = {
   innerClassName?: string;
   maxFontSize?: number;
   mapValueFn?: (n: number | null) => number | null;
+  mapOutputFn?: (n: number | null) => number | null;
 };
 
 const DEFAULT_FONT_SIZE = 84;
@@ -27,24 +28,33 @@ export default function AmountInput({
   innerClassName,
   maxFontSize = DEFAULT_FONT_SIZE,
   mapValueFn,
+  mapOutputFn,
 }: Props) {
   const inputRef = React.useRef(null);
 
-  const valueString = getValueString(value ?? null, currency, nullable, mapValueFn);
+  const valueString = getValueString(
+    value ?? null,
+    currency,
+    nullable,
+    mapValueFn
+  );
   const screenWidth = window.screen.width;
-  const fontSize = Math.min((1.5 * screenWidth) / valueString.length, maxFontSize);
+  const fontSize = Math.min(
+    (1.5 * screenWidth) / valueString.length,
+    maxFontSize
+  );
   const onInput: KeyboardEventHandler = (e) => {
     const key = e.key;
     const keyAsDigit = parseInt(key);
     if (!Number.isNaN(keyAsDigit)) {
       const newValue = onAddDigit(value, keyAsDigit);
-      onChange(newValue);
+      onChange(mapOutputFn?.(newValue) ?? newValue);
       return;
     }
 
     if (key === "Backspace") {
       const newValue = onRemoveDigit(value ?? null, nullable);
-      onChange(newValue);
+      onChange(mapOutputFn?.(newValue) ?? newValue);
     }
   };
 
@@ -56,7 +66,9 @@ export default function AmountInput({
         style={{
           fontSize,
         }}
-        className={classNames(innerClassName ?? "center text-font bg-background text-center")}
+        className={classNames(
+          innerClassName ?? "center text-font bg-background text-center"
+        )}
         value={valueString}
         type="tel"
         onKeyDown={onInput}

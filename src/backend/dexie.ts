@@ -22,7 +22,7 @@ class DexieRepository extends Dexie implements RepositoryBase<Expenditure> {
     }
     try {
       const allItems = JSON.parse(lsItems) as Expenditure[];
-      this.expenditures.bulkAdd(allItems);
+      await this.expenditures.bulkAdd(allItems);
       localStorage.removeItem(LS_STORAGE_KEY);
       return true;
     } catch {

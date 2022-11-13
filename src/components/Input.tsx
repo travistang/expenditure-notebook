@@ -1,4 +1,6 @@
+import classNames from "classnames";
 import classnames from "classnames";
+import OutsideClickHandler from "react-outside-click-handler";
 
 type Props = {
   children?: React.ReactNode;
@@ -6,32 +8,41 @@ type Props = {
   name: string;
   label: string;
   className?: string;
+  inputClassName?: string;
   onChange: (value: string) => void;
+  onOutsideClick?: () => void;
 };
 export default function Input({
   children,
   className,
+  inputClassName,
   name,
   label,
   value,
   onChange,
+  onOutsideClick = () => {},
 }: Props) {
   return (
-    <div className="vertical gap-1">
-      <label htmlFor={name}>{label}</label>
-      <div
-        className={classnames(
-          "rounded-lg bg-primary-500 p-4 horizontal",
-          className
-        )}
-      >
-        {children}
-        <input
-          className="bg-primary-500 text-primary-100 w-full outline-none text-xl"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-        />
+    <OutsideClickHandler onOutsideClick={onOutsideClick}>
+      <div className="vertical gap-1">
+        <label htmlFor={name}>{label}</label>
+        <div
+          className={classnames(
+            "rounded-full bg-background-secondary px-4 py-1 horizontal",
+            className
+          )}
+        >
+          {children}
+          <input
+            className={classNames(
+              "bg-background-secondary text-font w-full outline-none text-xl",
+              inputClassName
+            )}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+          />
+        </div>
       </div>
-    </div>
+    </OutsideClickHandler>
   );
 }

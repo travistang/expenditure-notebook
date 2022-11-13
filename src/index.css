@@ -2,9 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+[data-theme="dark"]  {
+  --color-primary: 171 106 251;
+  --color-secondary: 222 90 174;
+  --color-background: 24 31 41;
+  --color-background-secondary: 35 41 50;
+  --color-text: 229 229 229;
+  --color-accent: 194 161 48;
+  --color-success: 76 181 67;
+  --color-error: 225 46 75;
+}
+
+:root {
+  --color-primary: 171 106 251;
+  --color-secondary: 222 90 174;
+  --color-background: 239 241 243;
+  --color-background-secondary: 220 220 220;
+  --color-text: 39 39 39;
+  --color-accent: 194 161 48;
+  --color-success: 76 181 67;
+  --color-error: 225 46 75;
+}
+
 @layer base {
   *:not(svg):not(path) {
-    @apply text-color-100;
+    @apply text-font;
   }
 }
 @layer utilities {
@@ -46,8 +68,8 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-primary-700 rounded-r-full;
+  @apply bg-background rounded-r-full;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-color-100 rounded-full;
+  @apply bg-font rounded-full;
 }

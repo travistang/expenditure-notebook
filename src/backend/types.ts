@@ -5,6 +5,16 @@ export enum Currency {
   HKD = "HKD",
 }
 
+export enum ExpenditureCategory {
+  Groceries = "groceries",
+  Housing = "housing",
+  OutgoingExpenditure = "outgoing-expenditures",
+  Utilities = "utilities",
+  Leisure = "leisure",
+  RegularCosts = "regular-costs",
+  Medicine = "medicine",
+}
+
 export type CurrencyConfigType = { currency: Currency; exchangeRate: number };
 
 export type Expenditure = {
@@ -12,11 +22,14 @@ export type Expenditure = {
   date: Date;
   amount: number;
   labels: string[];
+  category?: ExpenditureCategory;
   id: string;
-  currencyConfig?: CurrencyConfigType;
+  currencyConfig: CurrencyConfigType;
 };
 
 export type Form = Omit<Expenditure, "id" | "date" | "currencyConfig"> & {
+  id?: string;
+  date?: Date;
   currencyConfig: CurrencyConfigType;
 };
 
@@ -26,4 +39,9 @@ export type DB = {
 
 export const DEFAULT_DB_VALUE: DB = {
   expenditures: [],
+};
+
+export type PaginationConfig = {
+  pageSize: number;
+  page: number;
 };

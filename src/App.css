@@ -10,5 +10,5 @@ input {
 }
 
 label {
-  @apply uppercase font-bold;
+  @apply capitalize text-sm font-bold;
 }

@@ -37,7 +37,7 @@ export default function UploadModal({ opened, onClose }: Props) {
   };
   return (
     <Modal title="Upload record" opened={opened} onClose={onClose}>
-      <span className="text-sm font-bold text-color-300 leading-4">
+      <span className="text-xs font-bold text-color-300 leading-4">
         Upload expenditure records on this device to server by sending its QR
         code.
       </span>

@@ -30,7 +30,7 @@ export default function CurrencyConfigEntry({
       )}
       <button
         onClick={() => setConfiguringCurrency(true)}
-        className="rounded-full w-12 h-8 flex items-center justify-center bg-primary-500 text-primary-100"
+        className="rounded-full w-12 h-8 flex items-center justify-center bg-background-secondary text-font"
       >
         {foreignCurrencySymbol}
       </button>

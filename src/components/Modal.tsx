@@ -21,17 +21,17 @@ export default function Modal({
   }
   return (
     <div
-      className="fixed z-10 inset-0 p-4 center bg-color-700 bg-opacity-60"
+      className="fixed z-10 inset-0 flex flex-col items-stretch justify-end bg-color-700 bg-opacity-60 bg-background"
       onClick={onClose}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         className={classnames(
-          "rounded-lg w-full bg-primary-600 text-color-100 vertical overflow-y-auto",
-          className || "h-2/3 p-2"
+          "rounded-t-xl shadow-lg w-full bg-primary-600 text-font vertical overflow-y-auto overflow-x-hidden bg-background-secondary",
+          className ?? "h-2/3 p-2"
         )}
       >
-        <span className="uppercase font-bold text-md text-color-100 mb-2">
+        <span className="z-50 font-bold text-sm text-font sticky -top-4 pt-4 pb-4 bg-background-secondary rounded-t-lg">
           {title}
         </span>
         {children}

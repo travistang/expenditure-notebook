@@ -29,7 +29,9 @@ export const mapFormToExpenditure = (form: Form): Expenditure => {
   };
 };
 
-export const normalizeExpenditureFilter = (filter: ExpenditureFilter): ExpenditureFilter => {
+export const normalizeExpenditureFilter = (
+  filter: ExpenditureFilter
+): ExpenditureFilter => {
   return {
     ...filter,
     amount: normalizeNumericFilter(filter.amount),

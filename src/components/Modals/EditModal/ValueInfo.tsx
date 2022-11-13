@@ -17,7 +17,7 @@ export default function ValueInfo({
     onChangeAmount(amount ?? 0);
   };
   return (
-    <div className="flex flex-col items-end justify-center">
+    <div className="flex flex-col items-end justify-center overflow-hidden">
       <AmountInput
         onChange={onChange}
         value={amount * 100}

@@ -27,12 +27,11 @@ export default function EditModal() {
   return (
     <Modal opened title="Expenditure information" onClose={closeModal}>
       <div className="flex flex-col items-stretch gap-2 h-full">
-        <div className="flex items-center justify-between">
+        <div className="grid grid-cols-2 items-center justify-between">
           <DisplayInput
             value={expenditure.description}
             name="description"
             className="flex-1 flex-shrink-0"
-            label=""
             inputClassName="border border-font rounded-lg px-2 -mx-2 flex-1 flex-shrink-0"
             onChange={setEditFormValue("description")}
           />

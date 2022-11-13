@@ -24,11 +24,11 @@ export default function App() {
   }, []);
   return (
     <RecoilRoot>
-      <div className="absolute vertical inset-0 flex p-4 bg-background overflow-hidden">
+      <div className="absolute vertical inset-0 flex p-4 bg-background overflow-hidden h-screen">
         <EditModal />
         <Toaster />
-        <Header currentPage={page} goPage={setPage} />
-        <div className="flex flex-col items-stretch flex-1">
+        <Header />
+        <div className="flex flex-col items-stretch flex-1 overflow-y-auto">
           {page === PageList.HOME_PAGE && <AddRecordPage />}
           {page === PageList.RECORD_LIST_PAGE && <RecordListPage />}
         </div>

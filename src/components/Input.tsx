@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import classnames from "classnames";
-import OutsideClickHandler from 'react-outside-click-handler';
+import OutsideClickHandler from "react-outside-click-handler";
 
 type Props = {
   children?: React.ReactNode;
@@ -28,7 +28,7 @@ export default function Input({
         <label htmlFor={name}>{label}</label>
         <div
           className={classnames(
-            "rounded-full bg-background-secondary p-4 horizontal",
+            "rounded-full bg-background-secondary px-4 py-1 horizontal",
             className
           )}
         >

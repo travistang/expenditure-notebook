@@ -86,20 +86,27 @@ export default function MultipleSelect({
       </div>
       <div
         className={classnames(
-          "relative inline-block rounded-full bg-background-secondary p-4 horizontal overflow-x-auto overflow-y-hidden",
+          "relative inline-block rounded-full bg-background-secondary px-4 py-1 horizontal overflow-x-auto overflow-y-hidden",
           "gap-2",
-          inputClassName,
+          inputClassName
         )}
       >
         <input
           onKeyDown={onKeyDown}
-          className={classnames("bg-background-secondary w-full outline-none text-xl", innerInputClassName)}
+          className={classnames(
+            "bg-background-secondary w-full outline-none text-xl",
+            innerInputClassName
+          )}
           value={editingValue}
           onChange={(e) => setEditingValue(e.target.value)}
         />
       </div>
       {displayingSelectableOptions?.length > 0 && (
-        <div className={("absolute min-h-20 bg-background-secondary rounded-lg left-0 right-0 bottom-0 z-20 max-h-32 mt-2 overflow-y-auto")}>
+        <div
+          className={
+            "absolute min-h-20 bg-background-secondary rounded-lg left-0 right-0 bottom-0 z-20 max-h-32 mt-2 overflow-y-auto"
+          }
+        >
           {displayingSelectableOptions.map((opt) => (
             <div
               key={opt}

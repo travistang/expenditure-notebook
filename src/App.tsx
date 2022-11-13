@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { RecoilRoot } from "recoil";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { PageList } from "./pageList";
 import RecordListPage from "./pages/RecordListPage";
@@ -11,10 +12,9 @@ import Header from "./components/Header";
 import "./App.css";
 import EditModal from "./components/Modals/EditModal";
 import Footer from "./components/Footer";
+import SummaryPage from "./pages/SummaryPage";
 
 export default function App() {
-  const [page, setPage] = React.useState<PageList>(PageList.HOME_PAGE);
-
   useEffect(() => {
     Repository.migrateFromLS().then((migrated) => {
       if (migrated) {
@@ -24,16 +24,27 @@ export default function App() {
   }, []);
   return (
     <RecoilRoot>
-      <div className="absolute vertical inset-0 flex p-4 bg-background overflow-hidden h-screen">
-        <EditModal />
-        <Toaster />
-        <Header />
-        <div className="flex flex-col items-stretch flex-1 overflow-y-auto">
-          {page === PageList.HOME_PAGE && <AddRecordPage />}
-          {page === PageList.RECORD_LIST_PAGE && <RecordListPage />}
+      <Router>
+        <div className="absolute vertical inset-0 flex p-4 bg-background overflow-hidden h-screen">
+          <EditModal />
+          <Toaster />
+          <Header />
+          <div className="flex flex-col items-stretch flex-1 overflow-y-auto">
+            <Routes>
+              <Route path={PageList.HOME_PAGE} element={<AddRecordPage />} />
+              <Route
+                path={PageList.RECORD_LIST_PAGE}
+                element={<RecordListPage />}
+              />
+              <Route
+                path={PageList.STATISTICS_PAGE}
+                element={<SummaryPage />}
+              />
+            </Routes>
+          </div>
+          <Footer />
         </div>
-        <Footer route={page} onChangeRoute={setPage} />
-      </div>
+      </Router>
     </RecoilRoot>
   );
 }

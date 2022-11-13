@@ -3,6 +3,7 @@ import {
   faCalendar,
   faCogs,
   faHome,
+  faMedkit,
   faRunning,
   faShoppingBag,
   faUmbrellaBeach,
@@ -19,4 +20,5 @@ export const ExpenditureCategoryIconProps: Record<
   [ExpenditureCategory.Utilities]: faCogs,
   [ExpenditureCategory.Leisure]: faUmbrellaBeach,
   [ExpenditureCategory.RegularCosts]: faCalendar,
+  [ExpenditureCategory.Medicine]: faMedkit,
 };

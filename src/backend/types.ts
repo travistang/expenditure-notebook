@@ -1,4 +1,3 @@
-
 export enum Currency {
   EUR = "EUR",
   USD = "USD",
@@ -7,12 +6,13 @@ export enum Currency {
 }
 
 export enum ExpenditureCategory {
-  Groceries = 'groceries',
-  Housing = 'housing',
-  OutgoingExpenditure = 'outgoing-expenditures',
-  Utilities = 'utilities',
-  Leisure = 'leisure',
-  RegularCosts = 'regular-costs',
+  Groceries = "groceries",
+  Housing = "housing",
+  OutgoingExpenditure = "outgoing-expenditures",
+  Utilities = "utilities",
+  Leisure = "leisure",
+  RegularCosts = "regular-costs",
+  Medicine = "medicine",
 }
 
 export type CurrencyConfigType = { currency: Currency; exchangeRate: number };
@@ -44,4 +44,4 @@ export const DEFAULT_DB_VALUE: DB = {
 export type PaginationConfig = {
   pageSize: number;
   page: number;
-}
+};

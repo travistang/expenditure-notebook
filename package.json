@@ -22,7 +22,7 @@
     "craco-workbox": "^0.2.0",
     "crypto-js": "^4.1.1",
     "currency-symbol-map": "^5.0.1",
-    "date-fns": "^2.23.0",
+    "date-fns": "^3.0.0",
     "dexie": "^3.2.2",
     "dexie-react-hooks": "^1.1.1",
     "gh-pages": "^3.2.3",

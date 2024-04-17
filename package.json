@@ -23,7 +23,7 @@
     "crypto-js": "^4.1.1",
     "currency-symbol-map": "^5.0.1",
     "date-fns": "^2.23.0",
-    "dexie": "^3.2.2",
+    "dexie": "^4.0.0",
     "dexie-react-hooks": "^1.1.1",
     "gh-pages": "^3.2.3",
     "react": "^17.0.2",
